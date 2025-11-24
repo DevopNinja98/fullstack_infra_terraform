@@ -81,7 +81,7 @@ git clone https://github.com/DevopNinja98/fullstack_infra_terraform.git
 cd fullstack_infra_terraform
 ```
 
-##3️⃣ Configure Backend (Optional)
+## 3️⃣ Configure Backend (Optional)
 
 Modify backend.tf with your S3 bucket + DynamoDB table.
 ```
