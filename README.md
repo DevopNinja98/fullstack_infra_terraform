@@ -1,3 +1,5 @@
+![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=white)
+
 <h1 align="center">🚀 Full-Stack Infrastructure on AWS using Terraform & GitHub Actions</h1>
 
 A fully automated, production-ready AWS infrastructure built with Terraform, orchestrated through GitHub Actions, and designed to deploy a complete 3-tier application on Amazon EKS.
