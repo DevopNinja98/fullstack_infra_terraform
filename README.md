@@ -8,44 +8,44 @@ This project showcases strong DevOps, SRE, and Platform Engineering capabilities
 
 This repository provisions an end-to-end AWS infr astructure using Terraform.
 
-##🔹 Core AWS Infrastructure
- - Custom VPC (public & private subnets across multiple AZs)
+## Core AWS Infrastructure
+ * Custom VPC (public & private subnets across multiple AZs)
 
- - Internet Gateway & NAT Gateways
+ * Internet Gateway & NAT Gateways
 
- - Routing tables + subnet associations
+ * Routing tables + subnet associations
 
- - VPC Endpoints for secure AWS service access
+ * VPC Endpoints for secure AWS service access
 
-##🔹 EKS Kubernetes Cluster
+## EKS Kubernetes Cluster
 
-- Amazon EKS Cluster with public & private node groups
+* Amazon EKS Cluster with public & private node groups
 
-- IAM roles, security groups, and OIDC provider
+* IAM roles, security groups, and OIDC provider
 
-- Automatic installation of EBS CSI Driver
+* Automatic installation of EBS CSI Driver
 
-- Production-ready for deploying workloads
+* Production-ready for deploying workloads
 
-##🔹 Container Registry
+## Container Registry
 
-- Amazon ECR repository for storing application container images
+* Amazon ECR repository for storing application container images
 
-##🔹 SonarQube EC2 Server
+## SonarQube EC2 Server
 
-- EC2 instance with automated setup script
+* EC2 instance with automated setup script
 
-- Useful for code quality, DevSecOps, and CI integration
+* Useful for code quality, DevSecOps, and CI integration
 
-##🔹 GitHub Actions CI/CD Pipeline
+## GitHub Actions CI/CD Pipeline
 
-- Terraform: Init → Validate → Plan → Apply
+* Terraform: Init → Validate → Plan → Apply
 
-- Deploys Kubernetes manifests to EKS automatically
+* Deploys Kubernetes manifests to EKS automatically
 
-- Uses OIDC for secure GitHub → AWS authentication
+* Uses OIDC for secure GitHub → AWS authentication
 
-- Integrates with external 3-tier application repository
+* Integrates with external 3-tier application repository
 
 <p align="center"> <img width="1280" height="720" src="https://github.com/user-attachments/assets/efea08c9-2b6a-482d-a0cc-97b57f9d5c20" /> </p>
 
@@ -63,63 +63,63 @@ This repository provisions an end-to-end AWS infr astructure using Terraform.
 
 <h2>📦 How to Use This Project</h2>
 
-##1️⃣ Prerequisites
+## 1️⃣ Prerequisites
 
-- AWS Account
+* AWS Account
 
-- Terraform ≥ 1.3
+* Terraform ≥ 1.3
 
-- kubectl installed
+* kubectl installed
 
-- AWS CLI installed
+* AWS CLI installed
 
-- GitHub secrets configured
+* GitHub secrets configured
 
-##2️⃣ Clone the Repository
-'''
+## 2️⃣ Clone the Repository
+```
 git clone https://github.com/DevopNinja98/fullstack_infra_terraform.git
 cd fullstack_infra_terraform
-'''
+```
 
 ##3️⃣ Configure Backend (Optional)
 
 Modify backend.tf with your S3 bucket + DynamoDB table.
-'''
+```
 terraform init
 
-'''
+```
 
-##4️⃣ Initialize Terraform
-'''
+## 4️⃣ Initialize Terraform
+```
 terraform init
-'''
+```
 
-##5️⃣ Validate Configuration
-'''
+## 5️⃣ Validate Configuration
+```
 terraform validate
-'''
+```
 
-##6️⃣ Preview Changes
-'''
+## 6️⃣ Preview Changes
+```
 terraform plan
-'''
+```
 
-##7️⃣ Deploy Infrastructure
-'''
+## 7️⃣ Deploy Infrastructure
+```
 terraform apply -auto-approve
-'''
+```
 
-##8️⃣ Configure Kubeconfig
-'''
+## 8️⃣ Configure Kubeconfig
+```
 aws eks update-kubeconfig --name <cluster-name> --region <region>
-'''
+```
 
-##9️⃣ Deploy the Application
+## 9️⃣ Deploy the Application
 GitHub Actions will deploy automatically.
 To deploy manually:
-'''
+```
 kubectl apply -f k8s/
-'''
+```
 
 <h2>🔐 Setting Up GitHub Secrets</h2>
 | **Secret Name**         | **Description**     |
@@ -132,15 +132,15 @@ kubectl apply -f k8s/
 
 
 <h2>🌟 Future Enhancements (Planned)</h2>
-- Integrate ArgoCD for GitOps
+* Integrate ArgoCD for GitOps
 
-- Add monitoring (Prometheus + Grafana)
+* Add monitoring (Prometheus + Grafana)
 
-- Add EFK logging stack
+* Add EFK logging stack
 
-- Introduce Karpenter for autoscaling
+* Introduce Karpenter for autoscaling
 
-- Add AWS WAF + CloudFront for security & caching
+* Add AWS WAF + CloudFront for security & caching
 
 <h2>🤝 Contributing</h2>
 
