@@ -1,27 +1,132 @@
-This GitHub Actions workflow (.github/workflows/terraform-cicd.yml) designed to automate the provisioning and management of infrastructure on Amazon Web Services (AWS) using Terraform and Kubernetes. This workflow aligns with the diagram illustrating the infrastructure deployment process. Let's break down the code step-by-step:
-<img width="1280" height="720" alt="image" src="https://github.com/user-attachments/assets/5e8c8f06-0319-4a80-ad05-c069e0046019" />
-**1. Workflow Trigger (on):**
+🚀 Full-Stack Infrastructure on AWS using Terraform & GitHub Actions
 
-- The workflow is set to run automatically whenever there's a push to the `main` branch of the repository. Additionally, it can be triggered manually through the "Run workflow" button in the GitHub Actions interface (`workflow_dispatch`).
+A fully automated, production-ready AWS infrastructure built with Terraform, orchestrated via GitHub Actions, and designed to deploy a complete 3-tier application on Amazon EKS.
 
-**2. Permissions (permissions):**
+This project demonstrates real-world DevOps skills including IaC, CI/CD, Kubernetes, security, networking, and automation — making it a strong portfolio piece for DevOps, SRE, and Platform Engineer roles.
 
-- The workflow requests the `id-token: write` permission to authenticate with GitHub and the `contents: read` permission to access the repository's contents.
+🎯 What This Project Does
 
-**3. Job Definition (jobs):**
+This repository builds a complete AWS infrastructure using Terraform:
 
-- A single job named `terraform` is defined.
-- It runs on the `ubuntu-latest` virtual environment provided by GitHub Actions.
-- The `environment: production` line specifies that this job targets the production environment.
+🔹 Core AWS Infrastructure
 
-**4. Steps:**
+Custom VPC (private + public subnets across AZs)
 
-- **Checkout:** This step checks out the code from your repository to the runner.
-- **Setup Terraform:** This step installs Terraform on the runner, using the specified version (1.8.1).
-- **Configure AWS Credentials:** This step securely retrieves your AWS credentials (Access Key ID and Secret Access Key) from GitHub Secrets and configures the AWS region (`ap-south-1`).
-- **Terraform Init:** This step initializes the Terraform working directory by downloading providers and modules.
-- **Terraform Plan:** This step creates an execution plan, showing what changes Terraform will make to your infrastructure. The `continue-on-error` flag allows the workflow to proceed even if the plan fails, which is useful for debugging.
-- **Terraform Apply:** This step applies the changes to your AWS infrastructure based on the plan. The `auto-approve` flag skips the confirmation prompt.
-- **Install EBS CSI Driver:** This step sets up the AWS EBS CSI driver, which allows Kubernetes to use EBS volumes for persistent storage.
-- **Clone Manifests:** This step clones a repository containing Kubernetes manifests for a 3-tier application.
-- **Apply Kubernetes Manifests:** It then applies these manifests to deploy the frontend, backend, database, and associated services and secrets to the EKS cluster.
+Internet Gateway & NAT Gateways
+
+Routing, subnet associations, and VPC endpoints
+
+🔹 EKS Kubernetes Cluster
+
+EKS cluster with public & private node groups
+
+IAM roles, security groups, OIDC provider
+
+Automatic installation of AWS EBS CSI Driver
+
+Ready for workload deployment
+
+🔹 Container Registry
+
+Secure Amazon ECR repository for application container images
+
+🔹 SonarQube EC2 Server
+
+EC2 instance with automated installation script
+
+Helps with continuous code quality and DevSecOps workflows
+
+🔹 GitHub Actions CI/CD Pipeline
+
+Terraform Init → Validate → Plan → Apply
+
+Deploys EKS manifests automatically after infrastructure creation
+
+Uses OpenID Connect (OIDC) for secure AWS authentication
+
+Integrates with a 3-tier application repo
+
+<img width="1280" height="720" alt="image" src="https://github.com/user-attachments/assets/efea08c9-2b6a-482d-a0cc-97b57f9d5c20" />
+
+
+🛠️ Technologies Used
+Category	Tools
+IaC	Terraform
+Cloud	AWS (EKS, VPC, EC2, IAM, ECR, VPC Endpoints)
+CI/CD	GitHub Actions
+Kubernetes	EKS, EBS CSI Driver
+Security	IAM, OIDC, least-privilege policies
+Scripting	Bash (user-data for SonarQube)
+📦 How to Use This Project
+1️⃣ Prerequisites
+
+AWS Account
+
+Terraform installed (≥ 1.3)
+
+kubectl installed
+
+AWS CLI installed
+
+GitHub repository + secrets configured
+
+2️⃣ Clone the Repo
+git clone https://github.com/DevopNinja98/fullstack_infra_terraform.git
+cd fullstack_infra_terraform
+
+3️⃣ Configure Backend (Optional)
+
+Update backend.tf with your S3 bucket and DynamoDB table.
+
+4️⃣ Initialize Terraform
+terraform init
+
+5️⃣ Validate the configuration
+terraform validate
+
+6️⃣ Preview changes
+terraform plan
+
+7️⃣ Deploy the infrastructure
+terraform apply -auto-approve
+
+8️⃣ Configure Kubeconfig
+aws eks update-kubeconfig --name <cluster-name> --region <region>
+
+9️⃣ Deploy Application
+
+A GitHub Actions workflow will do this automatically, but you can run manually:
+
+kubectl apply -f k8s/
+
+🔐 Setting Up GitHub Secrets
+
+Add these secrets in GitHub → Settings → Secrets → Actions:
+
+Secret	Description
+AWS_ACCESS_KEY_ID	IAM access key
+AWS_SECRET_ACCESS_KEY	IAM secret key
+AWS_REGION	AWS region
+ECR_REPO	Your ECR repo name
+CLUSTER_NAME	EKS cluster name 
+
+🌟 Future Enhancements(Planned)
+
+Integrate ArgoCD for GitOps
+
+Add monitoring (Prometheus + Grafana)
+
+Add logging using EFK stack
+
+Add autoscaling using Karpenter
+
+Add WAF + CloudFront
+
+🤝 Contributing
+
+Pull requests are welcome! Feel free to improve the infrastructure or optimize modules.
+
+📧 Contact
+
+Author: Niranjan Pawar (DevOps Engineer)
+LinkedIn/GitHub: https://www.linkedin.com/in/niranjan-pawar-3051a9160/
