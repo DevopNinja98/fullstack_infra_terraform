@@ -122,6 +122,7 @@ kubectl apply -f k8s/
 ```
 
 <h2>🔐 Setting Up GitHub Secrets</h2>
+
 | **Secret Name**         | **Description**     |
 | ----------------------- | ------------------- |
 | `AWS_ACCESS_KEY_ID`     | IAM access key      |
@@ -129,6 +130,7 @@ kubectl apply -f k8s/
 | `AWS_REGION`            | AWS region          |
 | `ECR_REPO`              | ECR repository name |
 | `CLUSTER_NAME`          | EKS cluster name    |
+
 
 
 <h2>🌟 Future Enhancements (Planned)</h2>
