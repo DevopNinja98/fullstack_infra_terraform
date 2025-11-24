@@ -1,132 +1,154 @@
-🚀 Full-Stack Infrastructure on AWS using Terraform & GitHub Actions
+<h1 align="center">🚀 Full-Stack Infrastructure on AWS using Terraform & GitHub Actions</h1>
 
-A fully automated, production-ready AWS infrastructure built with Terraform, orchestrated via GitHub Actions, and designed to deploy a complete 3-tier application on Amazon EKS.
+A fully automated, production-ready AWS infrastructure built with Terraform, orchestrated through GitHub Actions, and designed to deploy a complete 3-tier application on Amazon EKS.
 
-This project demonstrates real-world DevOps skills including IaC, CI/CD, Kubernetes, security, networking, and automation — making it a strong portfolio piece for DevOps, SRE, and Platform Engineer roles.
+This project showcases strong DevOps, SRE, and Platform Engineering capabilities including IaC, CI/CD, Kubernetes, cloud networking, and security automation.
+                                              
+<h2>🎯 What This Project Does</h2>  
 
-🎯 What This Project Does
+This repository provisions an end-to-end AWS infr astructure using Terraform.
 
-This repository builds a complete AWS infrastructure using Terraform:
+##🔹 Core AWS Infrastructure
+ - Custom VPC (public & private subnets across multiple AZs)
 
-🔹 Core AWS Infrastructure
+ - Internet Gateway & NAT Gateways
 
-Custom VPC (private + public subnets across AZs)
+ - Routing tables + subnet associations
 
-Internet Gateway & NAT Gateways
+ - VPC Endpoints for secure AWS service access
 
-Routing, subnet associations, and VPC endpoints
+##🔹 EKS Kubernetes Cluster
 
-🔹 EKS Kubernetes Cluster
+- Amazon EKS Cluster with public & private node groups
 
-EKS cluster with public & private node groups
+- IAM roles, security groups, and OIDC provider
 
-IAM roles, security groups, OIDC provider
+- Automatic installation of EBS CSI Driver
 
-Automatic installation of AWS EBS CSI Driver
+- Production-ready for deploying workloads
 
-Ready for workload deployment
+##🔹 Container Registry
 
-🔹 Container Registry
+- Amazon ECR repository for storing application container images
 
-Secure Amazon ECR repository for application container images
+##🔹 SonarQube EC2 Server
 
-🔹 SonarQube EC2 Server
+- EC2 instance with automated setup script
 
-EC2 instance with automated installation script
+- Useful for code quality, DevSecOps, and CI integration
 
-Helps with continuous code quality and DevSecOps workflows
+##🔹 GitHub Actions CI/CD Pipeline
 
-🔹 GitHub Actions CI/CD Pipeline
+- Terraform: Init → Validate → Plan → Apply
 
-Terraform Init → Validate → Plan → Apply
+- Deploys Kubernetes manifests to EKS automatically
 
-Deploys EKS manifests automatically after infrastructure creation
+- Uses OIDC for secure GitHub → AWS authentication
 
-Uses OpenID Connect (OIDC) for secure AWS authentication
+- Integrates with external 3-tier application repository
 
-Integrates with a 3-tier application repo
+<p align="center"> <img width="1280" height="720" src="https://github.com/user-attachments/assets/efea08c9-2b6a-482d-a0cc-97b57f9d5c20" /> </p>
 
-<img width="1280" height="720" alt="image" src="https://github.com/user-attachments/assets/efea08c9-2b6a-482d-a0cc-97b57f9d5c20" />
+<h2>🛠️ Technologies Used</h2>
+
+| **Category**   | **Tools**                                    |
+| -------------- | -------------------------------------------- |
+| **IaC**        | Terraform                                    |
+| **Cloud**      | AWS (EKS, VPC, EC2, IAM, ECR, VPC Endpoints) |
+| **CI/CD**      | GitHub Actions                               |
+| **Kubernetes** | EKS, EBS CSI Driver                          |
+| **Security**   | IAM, OIDC, least-privilege policies          |
+| **Scripting**  | Bash (SonarQube user-data)                   |
 
 
-🛠️ Technologies Used
-Category	Tools
-IaC	Terraform
-Cloud	AWS (EKS, VPC, EC2, IAM, ECR, VPC Endpoints)
-CI/CD	GitHub Actions
-Kubernetes	EKS, EBS CSI Driver
-Security	IAM, OIDC, least-privilege policies
-Scripting	Bash (user-data for SonarQube)
-📦 How to Use This Project
-1️⃣ Prerequisites
+<h2>📦 How to Use This Project</h2>
 
-AWS Account
+##1️⃣ Prerequisites
 
-Terraform installed (≥ 1.3)
+- AWS Account
 
-kubectl installed
+- Terraform ≥ 1.3
 
-AWS CLI installed
+- kubectl installed
 
-GitHub repository + secrets configured
+- AWS CLI installed
 
-2️⃣ Clone the Repo
+- GitHub secrets configured
+
+##2️⃣ Clone the Repository
+'''
 git clone https://github.com/DevopNinja98/fullstack_infra_terraform.git
 cd fullstack_infra_terraform
+'''
 
-3️⃣ Configure Backend (Optional)
+##3️⃣ Configure Backend (Optional)
 
-Update backend.tf with your S3 bucket and DynamoDB table.
-
-4️⃣ Initialize Terraform
+Modify backend.tf with your S3 bucket + DynamoDB table.
+'''
 terraform init
 
-5️⃣ Validate the configuration
+'''
+
+##4️⃣ Initialize Terraform
+'''
+terraform init
+'''
+
+##5️⃣ Validate Configuration
+'''
 terraform validate
+'''
 
-6️⃣ Preview changes
+##6️⃣ Preview Changes
+'''
 terraform plan
+'''
 
-7️⃣ Deploy the infrastructure
+##7️⃣ Deploy Infrastructure
+'''
 terraform apply -auto-approve
+'''
 
-8️⃣ Configure Kubeconfig
+##8️⃣ Configure Kubeconfig
+'''
 aws eks update-kubeconfig --name <cluster-name> --region <region>
+'''
 
-9️⃣ Deploy Application
-
-A GitHub Actions workflow will do this automatically, but you can run manually:
-
+##9️⃣ Deploy the Application
+GitHub Actions will deploy automatically.
+To deploy manually:
+'''
 kubectl apply -f k8s/
+'''
 
-🔐 Setting Up GitHub Secrets
+<h2>🔐 Setting Up GitHub Secrets</h2>
+| **Secret Name**         | **Description**     |
+| ----------------------- | ------------------- |
+| `AWS_ACCESS_KEY_ID`     | IAM access key      |
+| `AWS_SECRET_ACCESS_KEY` | IAM secret key      |
+| `AWS_REGION`            | AWS region          |
+| `ECR_REPO`              | ECR repository name |
+| `CLUSTER_NAME`          | EKS cluster name    |
 
-Add these secrets in GitHub → Settings → Secrets → Actions:
 
-Secret	Description
-AWS_ACCESS_KEY_ID	IAM access key
-AWS_SECRET_ACCESS_KEY	IAM secret key
-AWS_REGION	AWS region
-ECR_REPO	Your ECR repo name
-CLUSTER_NAME	EKS cluster name 
+<h2>🌟 Future Enhancements (Planned)</h2>
+- Integrate ArgoCD for GitOps
 
-🌟 Future Enhancements(Planned)
+- Add monitoring (Prometheus + Grafana)
 
-Integrate ArgoCD for GitOps
+- Add EFK logging stack
 
-Add monitoring (Prometheus + Grafana)
+- Introduce Karpenter for autoscaling
 
-Add logging using EFK stack
+- Add AWS WAF + CloudFront for security & caching
 
-Add autoscaling using Karpenter
+<h2>🤝 Contributing</h2>
 
-Add WAF + CloudFront
+Pull requests are welcome!
+Feel free to improve modules, optimize networking, or extend CI/CD workflows.
 
-🤝 Contributing
-
-Pull requests are welcome! Feel free to improve the infrastructure or optimize modules.
-
-📧 Contact
+<h2>📧 Contact</h2>
 
 Author: Niranjan Pawar (DevOps Engineer)
-LinkedIn/GitHub: https://www.linkedin.com/in/niranjan-pawar-3051a9160/
+LinkedIn: https://www.linkedin.com/in/niranjan-pawar-3051a9160/
+
